@@ -1,0 +1,1152 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Syed Raihaan | Cybersecurity Analyst &amp; Founder of NULLGRIDS LABS</title>
+<meta name="description" content="Official portfolio of Syed Raihaan. Elite Cybersecurity Analyst, DFIR expert, Founder of NULLGRIDS LABS, open-source developer, and National-Level Combat Sports Athlete." />
+<style>
+  :root{
+    --blue:#0A66FF;
+    --navy:#0B1F3A;
+    --red:#D90429;
+    --bg-1:#EAF4FF;
+    --glass-bg: rgba(255,255,255,0.45);
+    --glass-border: rgba(11,31,58,0.10);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:'Segoe UI', Inter, Arial, sans-serif;
+    color:var(--navy);
+    background:#fff;
+    overflow-x:hidden;
+  }
+  a{color:inherit;text-decoration:none;}
+  ul{list-style:none;margin:0;padding:0;}
+
+  /* ===== Background layers ===== */
+  .bg-fixed{
+    position:fixed;inset:0;z-index:-1;overflow:hidden;background:#fff;
+  }
+  .bg-fixed .blob{
+    position:absolute;filter:blur(90px);opacity:.28;mix-blend-mode:multiply;
+  }
+  .bg-fixed .blob.b1{top:-12%;left:-10%;width:50vw;height:50vw;
+    background:linear-gradient(45deg,#EAF4FF,var(--blue));}
+  .bg-fixed .blob.b2{bottom:-12%;right:-10%;width:55vw;height:55vw;
+    background:linear-gradient(45deg,var(--blue),var(--navy));opacity:.18;}
+  .bg-fixed .grid{
+    position:absolute;inset:0;opacity:.35;
+    background-image:
+      linear-gradient(to right, rgba(10,102,255,.08) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(10,102,255,.08) 1px, transparent 1px);
+    background-size:40px 40px;
+  }
+
+  /* ===== Loader ===== */
+  #loader{
+    position:fixed;inset:0;z-index:9999;background:#fff;
+    display:flex;flex-direction:column;align-items:center;justify-content:center;
+    transition:opacity .6s ease;
+  }
+  #loader.hide{opacity:0;pointer-events:none;}
+  .ring-wrap{position:relative;width:128px;height:128px;margin-bottom:2rem;}
+  .ring{position:absolute;inset:0;border-radius:50%;}
+  .ring1{border:2px solid rgba(10,102,255,.2);}
+  .ring2{border:2px solid rgba(10,102,255,.4);}
+  .ring3{border:4px solid var(--blue);border-top-color:transparent;animation:spin 1s linear infinite;}
+  .ring4{inset:16px;border:4px solid var(--navy);border-bottom-color:transparent;animation:spinrev 2s linear infinite;}
+  .core{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+  .core span{width:16px;height:16px;border-radius:50%;background:var(--red);
+    box-shadow:0 0 15px var(--red);animation:pulse 1.4s ease-in-out infinite;}
+  @keyframes spin{to{transform:rotate(360deg);}}
+  @keyframes spinrev{to{transform:rotate(-360deg);}}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.85);}}
+  .loader-text{display:flex;gap:.4rem;font-family:monospace;font-weight:700;letter-spacing:.3em;color:var(--navy);}
+  .loader-text span{opacity:0;transform:translateY(10px);animation:letterIn .4s forwards;}
+  @keyframes letterIn{to{opacity:1;transform:translateY(0);}}
+  .loader-bar{height:2px;background:var(--blue);margin-top:1rem;width:0;animation:barGrow 1.6s ease forwards .8s;}
+  @keyframes barGrow{to{width:240px;}}
+
+  #splash{
+    position:fixed;inset:0;z-index:50;display:flex;align-items:center;justify-content:center;
+    background:var(--navy);overflow:hidden;transition:opacity .5s ease, visibility .5s;
+  }
+  #splash.hide{opacity:0;visibility:hidden;}
+  #splash h1{
+    font-size:clamp(2.5rem,8vw,5rem);font-weight:900;letter-spacing:-.03em;
+    color:transparent;background:linear-gradient(90deg,var(--blue),var(--red));
+    -webkit-background-clip:text;background-clip:text;mix-blend-mode:screen;margin:0;
+  }
+
+  main{opacity:0;transition:opacity .7s ease;}
+  main.show{opacity:1;}
+
+  /* ===== Glass utility ===== */
+  .glass{
+    background:var(--glass-bg);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border:1px solid var(--glass-border);
+  }
+  .glass-card{
+    background:rgba(255,255,255,.55);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border:1px solid rgba(11,31,58,.08);
+    box-shadow:0 12px 40px rgba(10,102,255,.06);
+  }
+
+  /* ===== Reveal animation ===== */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.7,.3,1), transform .7s cubic-bezier(.2,.7,.3,1);}
+  .reveal.left{transform:translateX(-30px);}
+  .reveal.right{transform:translateX(30px);}
+  .reveal.scale{transform:scale(.9);}
+  .reveal.in{opacity:1;transform:none;}
+
+  .container{max-width:1280px;margin:0 auto;padding:0 1.25rem;}
+  .container-md{max-width:1000px;margin:0 auto;padding:0 1.25rem;}
+  .container-lg{max-width:1152px;margin:0 auto;padding:0 1.25rem;}
+
+  section{padding:6rem 0;position:relative;}
+
+  h2.section-title{
+    font-size:clamp(2rem,4vw,3rem);font-weight:900;color:var(--navy);margin:0;
+  }
+  .section-head{display:flex;align-items:center;gap:1rem;margin-bottom:4rem;}
+  .icon-accent{color:var(--blue);}
+  .icon-accent.red{color:var(--red);}
+
+  /* ===== Hero ===== */
+  .hero{
+    min-height:100vh;display:flex;align-items:center;justify-content:center;text-align:center;
+    position:relative;overflow:hidden;
+  }
+  .hero-glow{position:absolute;top:25%;left:25%;width:24rem;height:24rem;background:var(--blue);
+    border-radius:50%;filter:blur(150px);opacity:.10;}
+  .badge{
+    display:inline-block;padding:.4rem 1rem;border-radius:999px;border:1px solid rgba(10,102,255,.3);
+    background:rgba(10,102,255,.06);color:var(--blue);font-weight:700;font-size:.85rem;
+    font-family:monospace;letter-spacing:.05em;margin-bottom:1.5rem;
+  }
+  .hero h1{
+    font-size:clamp(2.5rem,8vw,5.5rem);font-weight:900;letter-spacing:-.03em;color:var(--navy);
+    margin:0 0 1rem;text-shadow:0 4px 18px rgba(11,31,58,.12);
+  }
+  .typed-role{
+    font-size:clamp(1.3rem,3vw,1.9rem);font-weight:700;
+    background:linear-gradient(90deg,var(--blue),var(--red));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+    min-height:2.4rem;margin-bottom:2.5rem;
+  }
+  .hero-btns{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;}
+  .btn{
+    padding:.85rem 2rem;border-radius:999px;font-weight:700;cursor:pointer;border:none;
+    transition:transform .25s ease, box-shadow .25s ease;
+  }
+  .btn:hover{transform:translateY(-2px) scale(1.03);}
+  .btn-primary{background:var(--blue);color:#fff;box-shadow:0 0 20px rgba(10,102,255,.4);}
+  .btn-glass{background:var(--glass-bg);backdrop-filter:blur(10px);color:var(--navy);border:1px solid var(--glass-border);}
+  .btn-outline{background:transparent;border:1px solid rgba(217,4,41,.5);color:var(--navy);}
+  .scroll-hint{position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);color:rgba(11,31,58,.5);
+    animation:bob 2s ease-in-out infinite;}
+  @keyframes bob{0%,100%{transform:translateX(-50%) translateY(0);}50%{transform:translateX(-50%) translateY(8px);}}
+
+  /* ===== About ===== */
+  .about-lead{text-align:center;max-width:760px;margin:0 auto 4rem;color:rgba(11,31,58,.85);font-size:1.1rem;line-height:1.7;}
+  .stat-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-bottom:4rem;}
+  @media(min-width:768px){.stat-grid{grid-template-columns:repeat(4,1fr);}}
+  .stat-card{border-radius:1.2rem;padding:1.6rem;text-align:center;transition:background .25s;}
+  .stat-card:hover{background:rgba(255,255,255,.7);}
+  .stat-card svg{margin:0 auto .8rem;display:block;color:var(--blue);}
+  .stat-num{font-size:1.9rem;font-weight:900;color:var(--navy);margin:0 0 .3rem;}
+  .stat-label{font-size:.85rem;font-weight:600;color:rgba(11,31,58,.85);}
+  .about-cards{display:grid;grid-template-columns:1fr;gap:2rem;}
+  @media(min-width:768px){.about-cards{grid-template-columns:1fr 1fr;}}
+  .about-card{padding:2rem;border-radius:1.5rem;}
+  .about-card.blue{border-left:4px solid var(--blue);}
+  .about-card.red{border-left:4px solid var(--red);}
+  .about-card h3{font-size:1.4rem;font-weight:800;margin:0 0 1rem;}
+  .about-card p{margin:0 0 1rem;color:var(--navy);font-weight:500;}
+  .about-card li{font-size:.92rem;color:rgba(11,31,58,.85);font-weight:500;padding:.25rem 0;}
+
+  /* ===== Experience ===== */
+  .timeline{position:relative;border-left:2px solid rgba(10,102,255,.2);margin-left:1rem;padding-left:0;}
+  .tl-item{position:relative;margin-left:2rem;margin-bottom:3rem;}
+  .tl-dot{position:absolute;left:-2.55rem;top:.25rem;width:1.1rem;height:1.1rem;border-radius:50%;
+    background:var(--blue);border:4px solid #fff;box-shadow:0 0 10px rgba(10,102,255,.8);}
+  .tl-card{padding:2rem;border-radius:1.2rem;}
+  .tl-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:1rem;margin-bottom:1rem;}
+  .tl-role{font-size:1.4rem;font-weight:800;margin:0;}
+  .tl-org{color:var(--blue);font-weight:700;font-size:1.05rem;margin:.2rem 0 0;}
+  .tl-time{background:rgba(255,255,255,.6);padding:.3rem .9rem;border-radius:999px;font-family:monospace;font-size:.85rem;}
+  .tl-list li{font-size:.92rem;font-weight:500;display:flex;gap:.5rem;margin-bottom:.4rem;}
+  .tl-list li::before{content:"▹";color:var(--red);}
+  .tag-row{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:1rem;}
+  .tag{font-size:.75rem;font-family:monospace;font-weight:700;color:var(--blue);
+    background:rgba(10,102,255,.12);border:1px solid rgba(10,102,255,.25);padding:.3rem .8rem;border-radius:999px;}
+
+  /* ===== SOC lab ===== */
+  .soc-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;}
+  @media(min-width:1024px){.soc-grid{grid-template-columns:2fr 1fr;}}
+  .terminal{border-radius:1.2rem;padding:1.5rem;display:flex;flex-direction:column;}
+  .term-head{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(10,102,255,.2);
+    padding-bottom:1rem;margin-bottom:1.2rem;}
+  .term-title{font-family:monospace;font-weight:800;font-size:1.1rem;}
+  .dots span{width:.7rem;height:.7rem;border-radius:50%;display:inline-block;margin-left:.4rem;}
+  .term-body{flex:1;background:rgba(0,0,0,.03);border:1px solid rgba(10,102,255,.15);border-radius:.8rem;
+    padding:1rem;font-family:monospace;font-size:.85rem;min-height:280px;display:flex;flex-direction:column;justify-content:flex-end;gap:.4rem;}
+  .term-body .ok{color:var(--blue);}
+  .term-body .warn{color:var(--red);}
+  .term-body .y{color:#caa700;}
+  .term-body .g{color:#0aa05a;}
+  .cursor{display:inline-block;width:8px;height:16px;background:var(--navy);animation:blink 1s steps(1) infinite;}
+  @keyframes blink{50%{opacity:0;}}
+  .stat-side{display:flex;flex-direction:column;gap:1.5rem;}
+  .stat-box{border-radius:1.2rem;padding:1.5rem;}
+  .stat-box.red-top{border-top:4px solid var(--red);}
+  .stat-box.blue-line{border:1px solid rgba(10,102,255,.2);}
+  .stat-box h4{margin:0 0 .8rem;font-size:1.1rem;font-weight:800;display:flex;align-items:center;gap:.6rem;}
+  .big-num{font-size:2.5rem;font-weight:900;font-family:monospace;letter-spacing:-.02em;}
+  .small-list li{display:flex;justify-content:space-between;font-size:.88rem;padding:.4rem 0;}
+
+  /* ===== Projects ===== */
+  .proj-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;}
+  @media(min-width:1024px){.proj-grid{grid-template-columns:1fr 1fr;}}
+  .proj-card{padding:2rem;border-radius:1.5rem;display:flex;flex-direction:column;justify-content:space-between;
+    transition:transform .3s ease, box-shadow .3s ease, border-color .3s ease;border:1px solid rgba(10,102,255,.15);}
+  .proj-card:hover{transform:translateY(-4px);border-color:rgba(10,102,255,.45);box-shadow:0 16px 50px rgba(10,102,255,.14);}
+  .proj-top{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:1.2rem;}
+  .proj-title{font-size:1.4rem;font-weight:900;margin:0 0 .3rem;}
+  .proj-sub{color:var(--blue);font-weight:600;font-size:.92rem;margin:0;}
+  .proj-links{display:flex;gap:.5rem;flex-shrink:0;}
+  .icon-btn{width:2.4rem;height:2.4rem;border-radius:50%;display:flex;align-items:center;justify-content:center;
+    background:rgba(255,255,255,.6);transition:transform .2s, background .2s;}
+  .icon-btn:hover{transform:scale(1.1);background:rgba(10,102,255,.15);}
+  .proj-desc{font-size:.92rem;font-weight:500;line-height:1.5;margin-bottom:1.2rem;}
+  .proj-feats{display:grid;grid-template-columns:1fr 1fr;gap:.4rem;margin-bottom:1rem;font-size:.85rem;font-weight:600;}
+  .proj-feats li{display:flex;align-items:center;gap:.4rem;}
+  .proj-feats li::before{content:"✓";color:var(--red);font-weight:900;}
+  .proj-tags{display:flex;flex-wrap:wrap;gap:.5rem;padding-top:1rem;border-top:1px solid rgba(10,102,255,.15);}
+  .proj-tags span{font-size:.7rem;font-family:monospace;font-weight:700;background:rgba(11,31,58,.05);
+    padding:.3rem .7rem;border-radius:.4rem;}
+  .more-toggle{text-align:center;margin-top:2.5rem;}
+  .more-toggle button{background:var(--navy);color:#fff;padding:.8rem 2rem;border-radius:999px;border:none;font-weight:700;cursor:pointer;}
+  .hidden-projects{display:none;}
+  .hidden-projects.show{display:contents;}
+
+  /* ===== Skills ===== */
+  .skills-grid{display:grid;grid-template-columns:1fr;gap:3rem;align-items:center;}
+  @media(min-width:1024px){.skills-grid{grid-template-columns:1fr 1fr;}}
+  .skill-row{margin-bottom:1.2rem;}
+  .skill-top{display:flex;justify-content:space-between;font-size:.92rem;margin-bottom:.4rem;}
+  .skill-top span:last-child{color:var(--blue);font-family:monospace;}
+  .skill-track{width:100%;height:.5rem;border-radius:999px;background:rgba(255,255,255,.6);overflow:hidden;}
+  .skill-fill{height:100%;border-radius:999px;width:0;background:linear-gradient(90deg,var(--blue),var(--red));
+    transition:width 1.4s cubic-bezier(.2,.8,.2,1);}
+  .tool-pills{display:flex;flex-wrap:wrap;gap:.6rem;}
+  .tool-pill{padding:.55rem 1.2rem;border-radius:999px;font-size:.88rem;font-weight:700;cursor:default;
+    transition:all .2s;}
+  .tool-pill:hover{color:var(--navy);border-color:var(--blue);background:rgba(10,102,255,.1);}
+  .radar-box{height:380px;border-radius:1.5rem;padding:1.5rem;display:flex;align-items:center;justify-content:center;}
+
+  /* ===== Achievements ===== */
+  .ach-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-bottom:5rem;}
+  @media(min-width:768px){.ach-grid{grid-template-columns:repeat(4,1fr);}}
+  .ach-card{padding:1.6rem;border-radius:1.2rem;text-align:center;border-top:4px solid #facc15;}
+  .ach-ring{width:4rem;height:4rem;border-radius:50%;background:rgba(250,204,21,.12);display:flex;
+    align-items:center;justify-content:center;margin:0 auto .8rem;color:#facc15;}
+  .ach-card h3{margin:0 0 .2rem;font-size:1rem;font-weight:800;}
+  .ach-card p{margin:0;font-size:.85rem;font-weight:700;color:#b88a00;}
+
+  .cert-wrap{display:grid;grid-template-columns:1fr;gap:2rem;}
+  @media(min-width:1024px){.cert-wrap{grid-template-columns:2fr 1fr;}}
+  .cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;}
+  @media(min-width:640px){.cert-grid{grid-template-columns:repeat(3,1fr);}}
+  .cert-item{padding:1rem;border-radius:.8rem;text-align:center;font-size:.85rem;font-weight:600;
+    border:1px solid rgba(10,102,255,.2);transition:all .2s;}
+  .cert-item:hover{background:rgba(255,255,255,.7);border-color:rgba(10,102,255,.5);}
+  .comp-card{padding:2rem;border-radius:1.5rem;background:rgba(10,102,255,.05);border:1px solid rgba(10,102,255,.2);}
+  .comp-card h4{border-bottom:1px solid rgba(10,102,255,.2);padding-bottom:1rem;margin:0 0 1.5rem;font-weight:800;font-size:1.2rem;}
+  .comp-card li{margin-bottom:1.4rem;}
+  .comp-num{font-size:1.9rem;font-weight:900;color:var(--blue);margin:0;}
+  .comp-num.red{color:var(--red);}
+  .comp-label{margin:.2rem 0 0;font-weight:600;color:rgba(11,31,58,.8);}
+
+  /* ===== GitHub heatmap ===== */
+  .gh-card{padding:2rem;border-radius:1.5rem;}
+  .gh-top{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1.5rem;align-items:center;
+    border-bottom:1px solid rgba(10,102,255,.2);padding-bottom:2rem;margin-bottom:1.5rem;}
+  .gh-id{display:flex;align-items:center;gap:1rem;}
+  .gh-avatar{width:4rem;height:4rem;border-radius:50%;background:linear-gradient(135deg,var(--blue),var(--red));
+    color:#fff;font-weight:800;font-size:1.3rem;display:flex;align-items:center;justify-content:center;}
+  .gh-stats{display:flex;gap:1.5rem;text-align:center;}
+  .gh-stats b{display:block;font-size:1.7rem;font-weight:900;}
+  .heatmap-scroll{overflow-x:auto;padding-bottom:.5rem;display:flex;justify-content:center;}
+  .heatmap{display:grid;grid-auto-flow:column;grid-template-rows:repeat(7,12px);gap:3px;}
+  .heatmap .cell{width:12px;height:12px;border-radius:2px;background:#ebedf0;}
+  .heatmap .cell.l1{background:#9be9a8;}
+  .heatmap .cell.l2{background:#40c463;}
+  .heatmap .cell.l3{background:#30a14e;}
+  .heatmap .cell.l4{background:#216e39;}
+  .repo-grid{display:grid;grid-template-columns:1fr;gap:1.2rem;margin-top:2rem;}
+  @media(min-width:768px){.repo-grid{grid-template-columns:repeat(3,1fr);}}
+  .repo-card{padding:1.5rem;border-radius:1.2rem;border:1px solid rgba(10,102,255,.2);display:flex;
+    flex-direction:column;justify-content:space-between;transition:background .2s;}
+  .repo-card:hover{background:rgba(10,102,255,.05);}
+  .repo-card h4{margin:.4rem 0 .6rem;font-size:1.1rem;font-weight:800;}
+  .repo-card p{margin:0 0 1.2rem;font-size:.85rem;font-weight:500;color:rgba(11,31,58,.85);}
+  .dot-lang{width:.6rem;height:.6rem;border-radius:50%;background:var(--blue);display:inline-block;margin-right:.4rem;}
+
+  /* ===== Intel ===== */
+  .intel-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;}
+  @media(min-width:768px){.intel-grid{grid-template-columns:repeat(3,1fr);}}
+  .intel-card{padding:1.6rem;border-radius:1.2rem;display:flex;flex-direction:column;justify-content:space-between;
+    border:1px solid rgba(10,102,255,.2);cursor:pointer;transition:background .2s;}
+  .intel-card:hover{background:rgba(255,255,255,.7);}
+  .intel-tag{display:inline-block;padding:.3rem .8rem;border-radius:999px;background:rgba(10,102,255,.1);
+    color:var(--blue);font-size:.7rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;margin-bottom:1rem;
+    border:1px solid rgba(10,102,255,.2);}
+  .intel-card h3{font-size:1.1rem;font-weight:800;margin:0 0 1rem;line-height:1.4;}
+  .intel-meta{display:flex;justify-content:space-between;font-size:.85rem;border-top:1px solid rgba(10,102,255,.2);
+    padding-top:1rem;margin-top:auto;}
+
+  /* ===== Innovations ===== */
+  .innov-glow{position:absolute;inset:0;z-index:0;opacity:.2;pointer-events:none;}
+  .innov-grid{display:grid;grid-template-columns:1fr;gap:1.5rem;}
+  @media(min-width:768px){.innov-grid{grid-template-columns:repeat(2,1fr);}}
+  @media(min-width:1024px){.innov-grid{grid-template-columns:repeat(4,1fr);}}
+  .innov-card{padding:1.5rem;border-radius:1.2rem;border:1px solid rgba(255,255,255,.5);background:rgba(255,255,255,.35);
+    position:relative;overflow:hidden;cursor:pointer;}
+  .innov-icon{width:3rem;height:3rem;border-radius:.8rem;background:#fff;display:flex;align-items:center;justify-content:center;
+    margin-bottom:1rem;box-shadow:0 2px 6px rgba(0,0,0,.05);}
+  .innov-card h4{margin:0 0 .4rem;font-weight:800;font-size:1.1rem;}
+  .innov-card p{margin:0;font-size:.85rem;color:rgba(11,31,58,.7);font-weight:500;}
+  .status-band{margin-top:4rem;border-radius:1.5rem;padding:3rem;text-align:center;background:var(--navy);
+    position:relative;overflow:hidden;}
+  .status-band h3{color:#fff;font-size:clamp(1.8rem,4vw,3rem);font-weight:900;letter-spacing:.1em;text-transform:uppercase;margin:0 0 .5rem;}
+  .status-band p{color:var(--blue);font-family:monospace;font-size:1.1rem;margin:0;}
+
+  /* ===== Contact ===== */
+  .contact-grid{display:grid;grid-template-columns:1fr;gap:4rem;}
+  @media(min-width:1024px){.contact-grid{grid-template-columns:1fr 1fr;}}
+  .contact-grid h2{font-size:clamp(2.5rem,6vw,3.6rem);margin:0 0 1.2rem;}
+  .contact-grid .quote{font-size:1.2rem;font-weight:600;color:rgba(11,31,58,.85);max-width:420px;margin-bottom:2.5rem;}
+  .contact-link{display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem;width:max-content;transition:color .2s;}
+  .contact-link:hover{color:var(--blue);}
+  .contact-icon{width:3rem;height:3rem;border-radius:50%;display:flex;align-items:center;justify-content:center;transition:background .2s;}
+  .contact-link:hover .contact-icon{background:rgba(10,102,255,.2);}
+  form.glass-card{padding:2.4rem;border-radius:1.5rem;}
+  form h3{margin:0 0 2rem;font-weight:800;font-size:1.4rem;}
+  .field{margin-bottom:1.4rem;}
+  .field label{display:block;font-size:.85rem;font-weight:600;color:rgba(11,31,58,.85);margin-bottom:.5rem;margin-left:.2rem;}
+  .field input,.field textarea{
+    width:100%;background:rgba(0,0,0,.03);border:1px solid rgba(10,102,255,.2);border-radius:.8rem;
+    padding:.8rem 1rem;color:var(--navy);font-family:inherit;font-size:.95rem;
+  }
+  .field input:focus,.field textarea:focus{outline:none;border-color:var(--blue);}
+  .submit-btn{width:100%;padding:1rem;border-radius:.8rem;border:none;font-weight:800;display:flex;align-items:center;
+    justify-content:center;gap:.6rem;cursor:pointer;color:#fff;
+    background:linear-gradient(90deg,var(--blue),rgba(10,102,255,.8));
+    box-shadow:0 0 20px rgba(10,102,255,.3);transition:box-shadow .25s,transform .25s;}
+  .submit-btn:hover{box-shadow:0 0 30px rgba(10,102,255,.5);transform:translateY(-2px);}
+
+  footer{text-align:center;padding:2rem;font-size:.8rem;color:rgba(11,31,58,.5);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.001ms !important;transition-duration:.001ms !important;}
+  }
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="ring-wrap">
+    <div class="ring ring1"></div>
+    <div class="ring ring2"></div>
+    <div class="ring ring3"></div>
+    <div class="ring ring4"></div>
+    <div class="core"><span></span></div>
+  </div>
+  <div class="loader-text" id="loaderText"></div>
+  <div class="loader-bar"></div>
+</div>
+
+<div id="splash"><h1>NULLGRIDS_</h1></div>
+
+<div class="bg-fixed">
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="grid"></div>
+</div>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-glow"></div>
+    <div class="container reveal" id="heroContent">
+      <span class="badge">// STATUS: SYSTEM_ONLINE</span>
+      <h1>Syed Raihaan</h1>
+      <div class="typed-role" id="typedRole"></div>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-primary">View Projects</a>
+        <a href="#about" class="btn btn-glass">View About</a>
+        <a href="#contact" class="btn btn-outline">Contact Me</a>
+      </div>
+    </div>
+    <div class="scroll-hint">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="container-lg">
+      <div class="reveal" style="text-align:center;margin-bottom:3rem;">
+        <h2 class="section-title">About Me</h2>
+      </div>
+      <p class="about-lead reveal">
+        I bridge the gap between aggressive cyber defense and physical discipline. As a SOC Analyst, DFIR enthusiast,
+        and the Founder of NULLGRIDS LABS, I secure systems and investigate threats. As a National-Level Kickboxer
+        and State-Level Boxer, I bring the same relentless drive and strategy to combat sports.
+        <br><br>
+        <strong style="color: var(--blue);">🎯 Specialization:</strong> Detection Engineering | DFIR | SOC | Incident Response
+      </p>
+
+      <div class="stat-grid">
+        <div class="stat-card glass-card reveal">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"></path></svg>
+          <p class="stat-num" data-count="20">0</p><p class="stat-label">Projects Built</p>
+        </div>
+        <div class="stat-card glass-card reveal">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>
+          <p class="stat-num" data-count="10">0</p><p class="stat-label">Technical Writeups</p>
+        </div>
+        <div class="stat-card glass-card reveal">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path></svg>
+          <p class="stat-num" data-count="5">0</p><p class="stat-label">Internships Completed</p>
+        </div>
+        <div class="stat-card glass-card reveal">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><circle cx="12" cy="12" r="6"></circle><circle cx="12" cy="12" r="2"></circle></svg>
+          <p class="stat-num">1.4+</p><p class="stat-label">Years Experience</p>
+        </div>
+        <div class="stat-card glass-card reveal">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+          <p class="stat-num" style="font-size: 1.4rem;">Growing</p><p class="stat-label">Detection Rules</p>
+        </div>
+        <div class="stat-card glass-card reveal">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 0 0 2-2V7a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2z"></path></svg>
+          <p class="stat-num" style="font-size: 1.4rem;">Growing</p><p class="stat-label">SOC Labs</p>
+        </div>
+        <div class="stat-card glass-card reveal" style="grid-column: 1 / -1; display: flex; flex-direction: column; align-items: center;">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
+          <p class="stat-num" data-count="1">0</p><p class="stat-label">Research Paper: WECAD</p>
+        </div>
+      </div>
+
+      <div class="about-cards">
+        <div class="about-card glass-card blue reveal left">
+          <h3>Cybersecurity &amp; Leadership</h3>
+          <p>Leading from the front at NULLGRIDS LABS. Managed over 110 CTF participants and 50+ interns, instilling practical SOC and DFIR methodologies.</p>
+          <ul>
+            <li>• 3+ Major Cybersecurity Projects deployed</li>
+            <li>• MSME Registered Organization Founder</li>
+            <li>• HackQuest Rank 26/400 | DEFCON CTF Rank 67</li>
+          </ul>
+        </div>
+        <div class="about-card glass-card red reveal right">
+          <h3>Combat Sports Journey</h3>
+          <p>Discipline tested in the ring. The mental fortitude built through combat sports directly translates to high-pressure incident response.</p>
+          <ul>
+            <li>• District Muay Thai Gold Medalist</li>
+            <li>• District Boxing Gold Medalist</li>
+            <li>• National-Level Kickboxer</li>
+            <li>• State-Level Boxer &amp; Wrestler</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEARNING JOURNEY -->
+  <section id="learning-journey">
+    <div class="container-lg">
+      <div class="section-head reveal">
+        <svg class="icon-accent" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5v-15A2.5 2.5 0 0 1 6.5 2H20v20H6.5a2.5 2.5 0 0 1 0-5H20"></path></svg>
+        <h2 class="section-title">Learning Journey</h2>
+      </div>
+
+      <div class="glass-card reveal" style="padding: 2.5rem; border-radius: 1.5rem; margin-bottom: 2rem; border-left: 4px solid var(--blue);">
+        <h3 style="font-size: 1.8rem; font-weight: 900; margin: 0 0 0.5rem; display: flex; align-items: center; gap: 0.8rem;">
+          🛡️ Detection Engineering - Day 2
+        </h3>
+        <p style="font-weight: 600; color: var(--blue); margin: 0 0 1.5rem;">Status: ✅ Completed &nbsp; | &nbsp; Category: Blue Team | Detection Engineering | SOC | Windows Security</p>
+        
+        <p style="font-size: 1.05rem; line-height: 1.6; color: rgba(11,31,58,.85); margin-bottom: 2rem;">
+          Completed an advanced Detection Engineering module focused on building high-fidelity detections using correlated Windows security events instead of relying on individual alerts. The work emphasizes behavioral detection, Sigma rule development, MITRE ATT&CK mapping, event correlation, and risk-based alerting for modern SOC operations.
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem;">
+          <div>
+            <h4 style="font-size: 1.2rem; font-weight: 800; border-bottom: 1px solid rgba(10,102,255,.2); padding-bottom: 0.5rem; margin-bottom: 1rem;">📚 Topics Covered</h4>
+            <ul class="tl-list" style="margin-left: 0; margin-bottom: 1.5rem;">
+              <li>Detection Engineering Fundamentals & Lifecycle</li>
+              <li>Detection-as-Code (DaC) & Sigma Rules</li>
+              <li>MITRE ATT&CK Mapping & Behavioral Detection</li>
+              <li>Event Correlation & Risk-Based Alerting (RBA)</li>
+              <li>SIEM Detection Logic & SOC Workflows</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="font-size: 1.2rem; font-weight: 800; border-bottom: 1px solid rgba(10,102,255,.2); padding-bottom: 0.5rem; margin-bottom: 1rem;">🖥 Windows Event IDs Mastered</h4>
+            <ul class="tl-list" style="margin-left: 0; margin-bottom: 1.5rem;">
+              <li>Event ID 4624 - Successful Logon</li>
+              <li>Event ID 4625 - Failed Logon</li>
+              <li>Event ID 4648 - Explicit Credential Logon</li>
+              <li>Event ID 4672 - Special Privileges Assigned</li>
+              <li>Event ID 4688 - Process Creation</li>
+              <li>Event ID 4776 - NTLM Authentication</li>
+            </ul>
+          </div>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; margin-top: 1rem;">
+          <div>
+            <h4 style="font-size: 1.2rem; font-weight: 800; border-bottom: 1px solid rgba(10,102,255,.2); padding-bottom: 0.5rem; margin-bottom: 1rem;">🛠 Technologies & Skills</h4>
+            <div class="tag-row" style="margin-top: 0; margin-bottom: 1rem;">
+              <span class="tag">Windows Event Logs</span><span class="tag">Sysmon</span><span class="tag">Sigma</span>
+              <span class="tag">Microsoft Sentinel</span><span class="tag">Splunk</span><span class="tag">Elastic</span>
+              <span class="tag">MITRE ATT&CK</span><span class="tag">SIEM</span>
+            </div>
+            <ul class="tl-list" style="margin-left: 0;">
+              <li>Analyze Logs & Design Detection Logic</li>
+              <li>Reduce False Positives & Correlate Events</li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="font-size: 1.2rem; font-weight: 800; border-bottom: 1px solid rgba(10,102,255,.2); padding-bottom: 0.5rem; margin-bottom: 1rem;">📈 Outcome</h4>
+            <p style="font-size: 0.95rem; line-height: 1.6; color: rgba(11,31,58,.85);">
+              Successfully completed Day 2 of my Detection Engineering learning path by understanding how multiple low-confidence Windows events can be correlated into high-confidence detections using behavioral analytics and risk-based scoring models.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section>
+    <div class="container-md">
+      <div class="section-head reveal">
+        <svg class="icon-accent" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect width="20" height="14" x="2" y="6" rx="2"></rect></svg>
+        <h2 class="section-title">Experience</h2>
+      </div>
+      <div class="timeline">
+
+        <div class="tl-item reveal left">
+          <div class="tl-dot"></div>
+          <div class="tl-card glass">
+            <div class="tl-head">
+              <div><p class="tl-role">Founder &amp; CTO</p><p class="tl-org">NULLGRIDS LABS</p></div>
+              <span class="tl-time">Present</span>
+            </div>
+            <ul class="tl-list">
+              <li>Founded an MSME registered cybersecurity organization.</li>
+              <li>Managed 50+ interns and led practical threat simulations.</li>
+              <li>Organized Operation BLACK CIPHER - National Cyber Warfare Championship with 110+ participants.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">Leadership</span><span class="tag">DFIR</span><span class="tag">SOC Operations</span><span class="tag">Threat Hunting</span></div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal left">
+          <div class="tl-dot"></div>
+          <div class="tl-card glass">
+            <div class="tl-head">
+              <div><p class="tl-role">Cybersecurity Intern</p><p class="tl-org">Pynevera Pvt Ltd</p></div>
+              <span class="tl-time">Past</span>
+            </div>
+            <ul class="tl-list">
+              <li>Conducted comprehensive vulnerability assessments.</li>
+              <li>Implemented security protocols for network infrastructure.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">Network Security</span><span class="tag">Vulnerability Assessment</span></div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal left">
+          <div class="tl-dot"></div>
+          <div class="tl-card glass">
+            <div class="tl-head">
+              <div><p class="tl-role">Cyber Security Trainer</p><p class="tl-org">Pyroguards</p></div>
+              <span class="tl-time">Past</span>
+            </div>
+            <ul class="tl-list"><li>Trained students in defensive security and blue teaming.</li></ul>
+            <div class="tag-row"><span class="tag">Mentoring</span><span class="tag">Blue Teaming</span><span class="tag">CTF Training</span></div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal left">
+          <div class="tl-dot"></div>
+          <div class="tl-card glass">
+            <div class="tl-head">
+              <div><p class="tl-role">DFIR Intern</p><p class="tl-org">Intellio</p></div>
+              <span class="tl-time">Past</span>
+            </div>
+            <ul class="tl-list">
+              <li>Participated in live incident response drills.</li>
+              <li>Analyzed malware artifacts and reconstructed attack timelines.</li>
+            </ul>
+            <div class="tag-row"><span class="tag">Digital Forensics</span><span class="tag">Incident Response</span></div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal left">
+          <div class="tl-dot"></div>
+          <div class="tl-card glass">
+            <div class="tl-head">
+              <div><p class="tl-role">Cyber Security Intern</p><p class="tl-org">Thiranex</p></div>
+              <span class="tl-time">Past</span>
+            </div>
+            <ul class="tl-list"><li>Assisted in compliance auditing and security policy review.</li></ul>
+            <div class="tag-row"><span class="tag">Security Auditing</span><span class="tag">Compliance</span></div>
+          </div>
+        </div>
+
+        <div class="tl-item reveal left">
+          <div class="tl-dot"></div>
+          <div class="tl-card glass">
+            <div class="tl-head">
+              <div><p class="tl-role">Cybersecurity Intern</p><p class="tl-org">Syntecxhub &amp; Codec Technologies</p></div>
+              <span class="tl-time">Past</span>
+            </div>
+            <ul class="tl-list"><li>Monitored SIEM alerts and investigated endpoint anomalies.</li></ul>
+            <div class="tag-row"><span class="tag">SIEM</span><span class="tag">Log Analysis</span><span class="tag">Endpoint Security</span></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SOC LAB -->
+  <section>
+    <div class="container">
+      <div class="reveal" style="text-align:center;margin-bottom:3rem;">
+        <div class="badge" style="border-color:rgba(217,4,41,.3);background:rgba(217,4,41,.08);color:var(--red);">
+          <span style="display:inline-block;width:.5rem;height:.5rem;border-radius:50%;background:var(--red);margin-right:.4rem;"></span>LIVE SOC ENVIRONMENT
+        </div>
+        <h2 class="section-title" style="margin-top:1rem;">Cybersecurity Lab</h2>
+        <p style="max-width:560px;margin:.8rem auto 0;color:rgba(11,31,58,.85);font-weight:500;">
+          Interactive threat detection, hunting, and incident response operations.
+        </p>
+      </div>
+
+      <div class="soc-grid">
+        <div class="terminal glass-card reveal left">
+          <div class="term-head">
+            <div class="term-title">SOC_COMMAND_CENTER</div>
+            <div class="dots">
+              <span style="background:rgba(10,102,255,.5);"></span>
+              <span style="background:rgba(234,179,8,.5);"></span>
+              <span style="background:rgba(217,4,41,.5);"></span>
+            </div>
+          </div>
+          <div class="term-body">
+            <p><span class="ok">[SYS]</span> Initializing ELK stack connection...</p>
+            <p><span class="ok">[SYS]</span> Wazuh agent heartbeat normal.</p>
+            <p><span class="warn">[WARN]</span> Suspicious process spawned: powershell.exe -enc JABzAD0A...</p>
+            <p><span class="ok">[INFO]</span> Sigma rule match: Suspicious PowerShell Encoded Command</p>
+            <p class="y">[*] Isolating host WIN-DC01...</p>
+            <p class="g">[*] Host isolated successfully. Beginning DFIR workflow.<span class="cursor"></span></p>
+          </div>
+        </div>
+
+        <div class="stat-side">
+          <div class="stat-box glass red-top reveal right">
+            <h4>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--red);"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="M12 8v4"></path><path d="M12 16h.01"></path></svg>
+              Active Alerts
+            </h4>
+            <div class="big-num">1,337</div>
+            <p style="opacity:.8;font-size:.85rem;margin:.4rem 0 0;">Analyzed in last 24h</p>
+          </div>
+          <div class="stat-box glass blue-line reveal right">
+            <h4>
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--blue);"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path></svg>
+              Telemetry Feed
+            </h4>
+            <ul class="small-list">
+              <li><span>Sysmon Events</span><span style="font-family:monospace;">1.2M</span></li>
+              <li><span>Threat Intel</span><span style="font-family:monospace;color:#0aa05a;">SYNCED</span></li>
+              <li><span>MITRE Coverage</span><span style="font-family:monospace;color:var(--blue);">85%</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="container">
+      <div class="section-head reveal">
+        <svg class="icon-accent" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 19a5 5 0 0 1-5-5v8"></path><path d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v5"></path><circle cx="13" cy="12" r="2"></circle><circle cx="20" cy="19" r="2"></circle></svg>
+        <h2 class="section-title">Mission Objectives</h2>
+      </div>
+      <div class="proj-grid" id="projGrid"></div>
+      <div class="more-toggle"><button id="moreBtn">Show More Projects</button></div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section>
+    <div class="container-lg">
+      <div class="section-head reveal">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--red);"><circle cx="12" cy="12" r="10"></circle><line x1="22" x2="18" y1="12" y2="12"></line><line x1="6" x2="2" y1="12" y2="12"></line><line x1="12" x2="12" y1="6" y2="2"></line><line x1="12" x2="12" y1="22" y2="18"></line></svg>
+        <h2 class="section-title">Technical Arsenal</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="radar-box glass-card reveal scale">
+          <svg viewBox="0 0 300 300" width="100%" height="100%" style="max-width:340px;">
+            <polygon points="150,30 270,110 220,260 80,260 30,110" fill="none" stroke="rgba(10,102,255,.25)" stroke-width="1"/>
+            <polygon points="150,70 230,125 195,225 105,225 70,125" fill="none" stroke="rgba(10,102,255,.18)" stroke-width="1"/>
+            <polygon points="150,110 190,140 170,190 130,190 110,140" fill="none" stroke="rgba(10,102,255,.18)" stroke-width="1"/>
+            <polygon id="radarShape" points="150,30 270,110 220,260 80,260 30,110" fill="rgba(10,102,255,.25)" stroke="#0A66FF" stroke-width="2" style="opacity:0;transform-origin:150px 150px;transition:opacity 1s ease 0.2s;"/>
+          </svg>
+        </div>
+        <div>
+          <div class="reveal right">
+            <h3 style="font-weight:800;font-size:1.5rem;margin-bottom:1.5rem;">Core Competencies</h3>
+            <div class="skill-row"><div class="skill-top"><span>Security Operations &amp; Incident Response</span><span>95%</span></div><div class="skill-track"><div class="skill-fill" data-width="95"></div></div></div>
+            <div class="skill-row"><div class="skill-top"><span>Digital Forensics (DFIR)</span><span>90%</span></div><div class="skill-track"><div class="skill-fill" data-width="90"></div></div></div>
+            <div class="skill-row"><div class="skill-top"><span>Threat Hunting &amp; Detection Engineering</span><span>85%</span></div><div class="skill-track"><div class="skill-fill" data-width="85"></div></div></div>
+            <div class="skill-row"><div class="skill-top"><span>Vulnerability Assessment</span><span>88%</span></div><div class="skill-track"><div class="skill-fill" data-width="88"></div></div></div>
+          </div>
+          <div class="reveal right" style="margin-top:2rem;">
+            <h3 style="font-weight:800;font-size:1.4rem;margin-bottom:1rem;">Tools &amp; Technologies</h3>
+            <div class="tool-pills">
+              <span class="tool-pill glass">Wazuh</span><span class="tool-pill glass">ELK Stack</span>
+              <span class="tool-pill glass">Sysmon</span><span class="tool-pill glass">Sigma</span>
+              <span class="tool-pill glass">Wireshark</span><span class="tool-pill glass">Splunk</span>
+              <span class="tool-pill glass">CrowdStrike</span><span class="tool-pill glass">Ghidra</span>
+              <span class="tool-pill glass">Autopsy</span><span class="tool-pill glass">Docker</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ACHIEVEMENTS -->
+  <section>
+    <div class="container-lg">
+      <div class="section-head reveal" style="justify-content:center;">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#facc15;"><path d="M10 14.66v1.626a2 2 0 0 1-.976 1.696A5 5 0 0 0 7 21.978"></path><path d="M14 14.66v1.626a2 2 0 0 0 .976 1.696A5 5 0 0 1 17 21.978"></path><path d="M18 9h1.5a1 1 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M6 9a6 6 0 0 0 12 0V3a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1z"></path><path d="M6 9H4.5a1 1 0 0 1 0-5H6"></path></svg>
+        <h2 class="section-title">Achievements</h2>
+      </div>
+      <div class="ach-grid">
+        <div class="ach-card glass-card reveal scale"><div class="ach-ring"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.21 15 2.66 7.14a2 2 0 0 1 .13-2.2L4.4 2.8A2 2 0 0 1 6 2h12a2 2 0 0 1 1.6.8l1.6 2.14a2 2 0 0 1 .14 2.2L16.79 15"></path><circle cx="12" cy="17" r="5"></circle></svg></div><h3>District Muay Thai</h3><p>Gold Medalist</p></div>
+        <div class="ach-card glass-card reveal scale"><div class="ach-ring"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.21 15 2.66 7.14a2 2 0 0 1 .13-2.2L4.4 2.8A2 2 0 0 1 6 2h12a2 2 0 0 1 1.6.8l1.6 2.14a2 2 0 0 1 .14 2.2L16.79 15"></path><circle cx="12" cy="17" r="5"></circle></svg></div><h3>District Boxing</h3><p>Gold Medalist</p></div>
+        <div class="ach-card glass-card reveal scale"><div class="ach-ring"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.21 15 2.66 7.14a2 2 0 0 1 .13-2.2L4.4 2.8A2 2 0 0 1 6 2h12a2 2 0 0 1 1.6.8l1.6 2.14a2 2 0 0 1 .14 2.2L16.79 15"></path><circle cx="12" cy="17" r="5"></circle></svg></div><h3>National Level</h3><p>Kickboxer</p></div>
+        <div class="ach-card glass-card reveal scale"><div class="ach-ring"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7.21 15 2.66 7.14a2 2 0 0 1 .13-2.2L4.4 2.8A2 2 0 0 1 6 2h12a2 2 0 0 1 1.6.8l1.6 2.14a2 2 0 0 1 .14 2.2L16.79 15"></path><circle cx="12" cy="17" r="5"></circle></svg></div><h3>State Level</h3><p>Boxer &amp; Wrestler</p></div>
+      </div>
+
+      <div class="section-head reveal">
+        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--blue);"><path d="M13 22h5a2 2 0 0 0 2-2V8a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 14 2H6a2 2 0 0 0-2 2v3.3"></path><circle cx="6" cy="14" r="3"></circle></svg>
+        <h3 style="font-size:1.8rem;font-weight:900;margin:0;">Certifications &amp; Accolades</h3>
+      </div>
+
+      <div class="cert-wrap">
+        <div class="cert-grid reveal left">
+          <div class="cert-item">Microsoft SC-900</div>
+          <div class="cert-item">Fortinet NSE 1</div>
+          <div class="cert-item">Fortinet NSE 2</div>
+          <div class="cert-item">Cisco Introduction to Cybersecurity</div>
+          <div class="cert-item">Linux Essentials</div>
+          <div class="cert-item">Cyber Threat Management</div>
+          <div class="cert-item">OWASP Top 10</div>
+          <div class="cert-item">CCEP</div>
+          <div class="cert-item">CPPS</div>
+          <div class="cert-item">CTIGA</div>
+        </div>
+        <div class="comp-card reveal right">
+          <h4>Cyber Competitions</h4>
+          <ul>
+            <li><p class="comp-num">Rank 26<span style="font-size:1.1rem;color:rgba(11,31,58,.8);">/400</span></p><p class="comp-label">HackQuest</p></li>
+            <li><p class="comp-num red">Rank 67</p><p class="comp-label">DEFCON CTF</p></li>
+            <li style="border-top:1px solid rgba(10,102,255,.2);padding-top:1rem;">
+              <p style="font-weight:800;margin:0;">Research Publication</p>
+              <p style="font-size:.85rem;color:rgba(11,31,58,.8);margin:.2rem 0 0;">Authored and published cybersecurity research.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- OPEN SOURCE -->
+  <section>
+    <div class="container-lg">
+      <div class="reveal" style="text-align:center;margin-bottom:3rem;">
+        <div style="display:flex;align-items:center;justify-content:center;gap:.8rem;">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--blue);"><path d="M15 6a9 9 0 0 0-9 9V3"></path><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle></svg>
+          <h2 class="section-title">Open Source Repository</h2>
+        </div>
+        <p style="max-width:560px;margin:1rem auto 0;color:rgba(11,31,58,.85);font-weight:500;">
+          Contributing to the cybersecurity community through open-source tooling, threat simulations, and intelligence platforms.
+        </p>
+      </div>
+
+      <div class="gh-card glass-card reveal scale">
+        <div class="gh-top">
+          <div class="gh-id">
+            <div class="gh-avatar">NF</div>
+            <div>
+              <h3 style="margin:0;font-weight:800;font-size:1.3rem;">@nullfist</h3>
+              <a href="https://github.com/nullfist" target="_blank" rel="noreferrer" style="color:var(--blue);font-weight:600;">View Complete GitHub Profile</a>
+            </div>
+          </div>
+          <div class="gh-stats">
+            <div><b>12+</b><span style="font-size:.85rem;font-weight:600;">Repositories</span></div>
+            <div><b style="color:var(--blue);">1.2k</b><span style="font-size:.85rem;font-weight:600;">Contributions</span></div>
+          </div>
+        </div>
+        <div class="heatmap-scroll"><div class="heatmap" id="heatmap"></div></div>
+      </div>
+
+      <div class="repo-grid">
+        <a href="https://github.com/nullfist/SecureVault" target="_blank" rel="noreferrer" class="repo-card glass reveal">
+          <div><h4>SecureVault</h4><p>Secure data vault utilizing advanced cryptography.</p></div>
+          <div><span class="dot-lang"></span>Python</div>
+        </a>
+        <a href="https://github.com/nullfist/SOC-Collector" target="_blank" rel="noreferrer" class="repo-card glass reveal">
+          <div><h4>SOC-Collector</h4><p>Telemetry and event collector for Security Operations Centers.</p></div>
+          <div><span class="dot-lang"></span>Python</div>
+        </a>
+        <a href="https://github.com/nullfist/Syntexchub-Encrypted-Chat-System" target="_blank" rel="noreferrer" class="repo-card glass reveal">
+          <div><h4>Syntexchub Encrypted Chat</h4><p>End-to-end encrypted messaging system framework.</p></div>
+          <div><span class="dot-lang"></span>Python</div>
+        </a>
+        <a href="https://github.com/nullfist/Advanced-port-scanner" target="_blank" rel="noreferrer" class="repo-card glass reveal">
+          <div><h4>Advanced Port Scanner</h4><p>High-speed customized port scanner for network mapping.</p></div>
+          <div><span class="dot-lang"></span>Python</div>
+        </a>
+        <a href="https://github.com/nullfist/phishing_email_detection" target="_blank" rel="noreferrer" class="repo-card glass reveal">
+          <div><h4>Phishing Email Detection</h4><p>ML-based classifier to detect phishing indicators in emails.</p></div>
+          <div><span class="dot-lang"></span>Jupyter</div>
+        </a>
+        <a href="https://github.com/nullfist/vulnerability_scanner" target="_blank" rel="noreferrer" class="repo-card glass reveal">
+          <div><h4>Vulnerability Scanner</h4><p>Automated vulnerability scanning tool for web applications.</p></div>
+          <div><span class="dot-lang"></span>Python</div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- INTEL -->
+  <section>
+    <div class="container-lg">
+      <div class="reveal" style="display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid rgba(10,102,255,.2);padding-bottom:1.5rem;margin-bottom:3rem;">
+        <div style="display:flex;align-items:center;gap:1rem;">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:var(--blue);"><path d="M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z"></path></svg>
+          <h2 class="section-title" style="font-size:2.2rem;">Security Intel</h2>
+        </div>
+      </div>
+      <div class="intel-grid">
+        <div class="intel-card glass reveal">
+          <div><span class="intel-tag">Threat Hunting</span><h3>Advanced Threat Hunting in Active Directory Environments</h3></div>
+          <div class="intel-meta"><span>Oct 24, 2024</span><span>8 min read</span></div>
+        </div>
+        <div class="intel-card glass reveal">
+          <div><span class="intel-tag">DFIR</span><h3>Reconstructing the Timeline: A DFIR Deep Dive</h3></div>
+          <div class="intel-meta"><span>Sep 15, 2024</span><span>12 min read</span></div>
+        </div>
+        <div class="intel-card glass reveal">
+          <div><span class="intel-tag">Detection Engineering</span><h3>Building Custom Sigma Rules for Novel Malware</h3></div>
+          <div class="intel-meta"><span>Aug 02, 2024</span><span>6 min read</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INNOVATIONS -->
+  <section style="overflow:hidden;">
+    <div class="innov-glow">
+      <div style="position:absolute;top:-20%;right:-10%;width:600px;height:600px;background:linear-gradient(135deg,var(--blue),var(--red));filter:blur(120px);"></div>
+      <div style="position:absolute;bottom:-20%;left:-10%;width:500px;height:500px;background:linear-gradient(135deg,#000,var(--blue));filter:blur(100px);"></div>
+    </div>
+    <div class="container reveal" style="position:relative;z-index:1;">
+      <p style="text-align:center;max-width:560px;margin:0 auto 3rem;font-size:1.05rem;color:rgba(11,31,58,.7);font-weight:500;">
+        Fusing advanced front-end interactions with zero-trust security principles. Showcasing micro-animations, SVG integrations, and kinetic flows.
+      </p>
+      <div class="innov-grid">
+        <div class="innov-card glass-card reveal scale">
+          <div class="innov-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-2.48a2 2 0 0 0-1.93 1.46l-2.35 8.36a.25.25 0 0 1-.48 0L9.24 2.18a.25.25 0 0 0-.48 0l-2.35 8.36A2 2 0 0 1 4.49 12H2"></path></svg></div>
+          <h4>Live Telemetry</h4><p>Real-time interactive data flow mapping.</p>
+        </div>
+        <div class="innov-card glass-card reveal scale">
+          <div class="innov-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0"></path><circle cx="12" cy="12" r="3"></circle></svg></div>
+          <h4>Zero-Trust UI</h4><p>Secure, glitch-free micro-interactions.</p>
+        </div>
+        <div class="innov-card glass-card reveal scale">
+          <div class="innov-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"></path></svg></div>
+          <h4>Kinetic Responses</h4><p>Instantaneous visual feedback loops.</p>
+        </div>
+        <div class="innov-card glass-card reveal scale">
+          <div class="innov-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"></circle><path d="M9 12h6M12 9v6"></path></svg></div>
+          <h4>Auth Visuals</h4><p>Biometric SVG path drawing animations.</p>
+        </div>
+      </div>
+      <div class="status-band reveal scale">
+        <h3>System Intact</h3>
+        <p>All visual anomalies neutralized.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" style="overflow:hidden;">
+    <div class="container-lg">
+      <div class="contact-grid">
+        <div class="reveal left" style="display:flex;flex-direction:column;justify-content:center;">
+          <h2>Let's Connect</h2>
+          <p class="quote">"Securing systems. Investigating threats. Building the future of cyber defense."</p>
+          <div>
+            <a href="mailto:syedraihaan.ms@gmail.com" class="contact-link">
+              <div class="contact-icon glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m22 7-8.991 5.727a2 2 0 0 1-2.009 0L2 7"></path><rect x="2" y="4" width="20" height="16" rx="2"></rect></svg></div>
+              <span style="font-weight:600;">contact@syedraihaan.com</span>
+            </a>
+            <a href="https://www.linkedin.com/in/syed-raihaan-a03445291" target="_blank" rel="noreferrer" class="contact-link">
+              <div class="contact-icon glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 20V4a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path><rect width="20" height="14" x="2" y="6" rx="2"></rect></svg></div>
+              <span style="font-weight:600;">LinkedIn Profile</span>
+            </a>
+            <a href="https://github.com/nullfist" target="_blank" rel="noreferrer" class="contact-link">
+              <div class="contact-icon glass"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 6a9 9 0 0 0-9 9V3"></path><circle cx="18" cy="6" r="3"></circle><circle cx="6" cy="18" r="3"></circle></svg></div>
+              <span style="font-weight:600;">@nullfist on GitHub</span>
+            </a>
+          </div>
+          <button class="btn btn-glass" style="margin-top:1.5rem;display:flex;align-items:center;gap:.6rem;width:max-content;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 15V3"></path><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><path d="m7 10 5 5 5-5"></path></svg>
+            Download Resume
+          </button>
+        </div>
+
+        <form class="glass-card reveal right" onsubmit="event.preventDefault(); alert('Message ready — connect a backend to send it!');">
+          <h3>Secure Transmission</h3>
+          <div class="field"><label>Identifier (Name)</label><input type="text" placeholder="John Doe" /></div>
+          <div class="field"><label>Return Address (Email)</label><input type="email" placeholder="john@corp.com" /></div>
+          <div class="field"><label>Payload (Message)</label><textarea rows="4" placeholder="Encrypting payload..."></textarea></div>
+          <button type="submit" class="submit-btn">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z"></path><path d="m21.854 2.147-10.94 10.939"></path></svg>
+            Initialize Handshake
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>© <span id="year"></span> Syed Raihaan — NULLGRIDS LABS. All systems nominal.</footer>
+</main>
+
+<script>
+/* ============ Loader letters ============ */
+(function(){
+  const word = "INITIALIZING_HANDSHAKE";
+  const wrap = document.getElementById('loaderText');
+  [...word].forEach((ch,i)=>{
+    const s = document.createElement('span');
+    s.textContent = ch;
+    s.style.animationDelay = (i*0.04)+'s';
+    wrap.appendChild(s);
+  });
+})();
+
+window.addEventListener('load', () => {
+  setTimeout(()=>{
+    document.getElementById('loader').classList.add('hide');
+  }, 1400);
+  setTimeout(()=>{
+    document.getElementById('splash').classList.add('hide');
+    document.getElementById('main').classList.add('show');
+  }, 2000);
+});
+
+/* ============ Typed role ============ */
+const roles = ["Cybersecurity Analyst","DFIR Specialist","Founder, NULLGRIDS LABS","Threat Hunter","Combat Athlete"];
+let rIdx=0, cIdx=0, deleting=false;
+const typedEl = document.getElementById('typedRole');
+function typeLoop(){
+  const full = roles[rIdx];
+  if(!deleting){
+    cIdx++;
+    typedEl.textContent = full.slice(0,cIdx);
+    if(cIdx===full.length){ deleting=true; setTimeout(typeLoop,1300); return; }
+  } else {
+    cIdx--;
+    typedEl.textContent = full.slice(0,cIdx);
+    if(cIdx===0){ deleting=false; rIdx=(rIdx+1)%roles.length; }
+  }
+  setTimeout(typeLoop, deleting?35:70);
+}
+setTimeout(typeLoop, 2100);
+
+/* ============ Reveal on scroll ============ */
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('in');
+      io.unobserve(e.target);
+    }
+  });
+},{threshold:0.15});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+/* ============ Counters ============ */
+const counters = document.querySelectorAll('.stat-num[data-count]');
+const countIO = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      const el = e.target;
+      const target = parseInt(el.dataset.count,10);
+      let cur = 0;
+      const step = Math.max(1, Math.round(target/30));
+      const t = setInterval(()=>{
+        cur += step;
+        if(cur>=target){ cur=target; clearInterval(t); }
+        el.textContent = cur+ (target>=10? '+':'');
+      }, 35);
+      countIO.unobserve(el);
+    }
+  });
+},{threshold:0.5});
+counters.forEach(c=>countIO.observe(c));
+
+/* ============ Skill bars ============ */
+const fills = document.querySelectorAll('.skill-fill');
+const fillIO = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.style.width = e.target.dataset.width + '%';
+      fillIO.unobserve(e.target);
+    }
+  });
+},{threshold:0.4});
+fills.forEach(f=>fillIO.observe(f));
+
+/* ============ Radar shape pulse ============ */
+const radar = document.getElementById('radarShape');
+const radarIO = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ radar.style.opacity = 1; radarIO.unobserve(e.target); }
+  });
+},{threshold:0.4});
+if(radar) radarIO.observe(radar);
+
+/* ============ GitHub heatmap (decorative, deterministic) ============ */
+(function(){
+  const grid = document.getElementById('heatmap');
+  const weeks = 53, days = 7;
+  let seed = 42;
+  function rnd(){ seed = (seed*9301+49297)%233280; return seed/233280; }
+  for(let w=0; w<weeks; w++){
+    for(let d=0; d<days; d++){
+      const cell = document.createElement('div');
+      const r = rnd();
+      let cls='cell';
+      if(r>0.93) cls+=' l4'; else if(r>0.85) cls+=' l3'; else if(r>0.7) cls+=' l2'; else if(r>0.55) cls+=' l1';
+      cell.className = cls;
+      grid.appendChild(cell);
+    }
+  }
+})();
+
+/* ============ Projects data + render ============ */
+const projects = [
+ {n:"IRIS",s:"Incident Reconstruction & Intelligence System",d:"Advanced platform for timeline reconstruction and ML-based detection, mapped to MITRE ATT&CK framework.",g:"https://github.com/nullfist/IRIS-Forensic-assis",f:["MITRE Mapping","Attack Graphs","Timeline Reconstruction","ML Detection"],t:["Python","FastAPI","Neo4j","React","ELK","Docker"]},
+ {n:"SOCForge",s:"Enterprise Security Telemetry & Attack Simulation",d:"Comprehensive platform generating over 441,000+ events for threat simulation and Sigma validation.",g:"https://github.com/nullfist/SOCForge",f:["Sigma Validation","Threat Simulation","SOC Training","Telemetry Gen"],t:["Rust","Python","ELK","Wazuh"]},
+ {n:"NetForensicToolkit",s:"Network Traffic Analysis & Evidence Extraction",d:"Deep packet inspection toolkit for SOC teams to extract IOCs and reconstruct network streams during incidents.",g:"https://github.com/syedrai/NetForensicToolkit",f:["Packet Dissection","Stream Reconstruction","IOC Extraction","Automated Triage"],t:["Python","Scapy","Wireshark","PCAP"]},
+ {n:"ThreatIntelAI",s:"AI-Powered Threat Intelligence Feed",d:"Machine learning model that analyzes global threat feeds to predict zero-day vulnerabilities and attacker behaviors.",g:"https://github.com/syedrai/ThreatIntelAI-final_version-",f:["Zero-Day Prediction","Automated Parsing","Confidence Scoring","OSINT"],t:["Python","TensorFlow","NLP","API Integration"]},
+ {n:"CyberSec Portfolio 2025",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/CyberSec-Portfolio-2025",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"NULLSHARE",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/NULLSHARE",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"NullGrids care",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/NullGrids-care",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"R.Y.K.A",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/R.Y.K.A",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"autopentest pro aizen",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/autopentest-pro-aizen",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"FormAutoGen",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/FormAutoGen",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"cyberrange",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/cyberrange",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"SQLi lab practice with self logs",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/SQLi_lab_practice_with_self_logs",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"3CS CTF",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/3CS_CTF",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"REDVSBLUE PLATFORM",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/REDVSBLUE_PLATFORM",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"ADVANCED IOC TOOLKIT",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/ADVANCED_IOC_TOOLKIT",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"packet analyzer",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/packet-analyzer",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"CS CAREER FINDER 3CS",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/CS_CAREER_FINDER_3CS",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"ctf assistant",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/ctf-assistant",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"architectai",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/architectai",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"AndroidSecAnalyzer",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/AndroidSecAnalyzer",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"xss payload injector",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/xss-payload-injector",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"soc log analysis lab",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/soc_log_analysis_lab",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"SQL INJ GUIDE",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/SQL_INJ_GUIDE",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"HYDRA CHALLENGE BRUTEFORCING",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/HYDRA_CHALLENGE-BRUTEFORCING-",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"HYDRA SEMINAR CHALLENGE",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/HYDRA_SEMINAR_CHALLENGE",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"AutoPentestPro",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/AutoPentestPro",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"cs career finder",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/cs_career_finder",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"GESTURE CONTROL",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/GESTURE_CONTROL",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"cyberrangev1",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/cyberrangev1",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"soc training platform",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/soc_training_platform",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"edushield",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/edushield",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"CloudSecScanner",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/syedrai/CloudSecScanner",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"NULLVAULT",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/nullfist/NULLVAULT",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]},
+ {n:"SYNAPSE GRID",s:"Security Architecture & Tooling",d:"Open-source cybersecurity repository developed for advanced threat analysis, offensive testing, or infrastructure defense.",g:"https://github.com/nullfist/SYNAPSE-GRID",f:["Open Source","Security Implementation","Custom Tooling","Code Audited"],t:["Cybersecurity","DevSecOps","Security Tool"]}
+];
+
+const checkSvg = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg>';
+const gitSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 19a5 5 0 0 1-5-5v8"/><path d="M9 20H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H20a2 2 0 0 1 2 2v5"/><circle cx="13" cy="12" r="2"/><circle cx="20" cy="19" r="2"/></svg>';
+const extSvg = '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6"/><path d="M10 14 21 3"/><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/></svg>';
+
+function projCard(p){
+  return `<div class="proj-card glass-card reveal">
+    <div>
+      <div class="proj-top">
+        <div><h3 class="proj-title">${p.n}</h3><p class="proj-sub">${p.s}</p></div>
+        <div class="proj-links">
+          <a class="icon-btn" href="${p.g}" target="_blank" rel="noreferrer">${gitSvg}</a>
+          <a class="icon-btn" href="${p.g}" target="_blank" rel="noreferrer">${extSvg}</a>
+        </div>
+      </div>
+      <p class="proj-desc">${p.d}</p>
+      <ul class="proj-feats">${p.f.map(x=>`<li>${x}</li>`).join('')}</ul>
+    </div>
+    <div class="proj-tags">${p.t.map(x=>`<span>${x}</span>`).join('')}</div>
+  </div>`;
+}
+
+const grid = document.getElementById('projGrid');
+const INITIAL = 6;
+projects.forEach((p,i)=>{
+  grid.insertAdjacentHTML('beforeend', projCard(p));
+});
+const allCards = [...grid.children];
+allCards.forEach((c,i)=>{ if(i>=INITIAL) c.style.display='none'; });
+allCards.forEach(c=>io.observe(c.querySelector('.proj-card')||c));
+// re-observe since dynamically inserted after initial query
+document.querySelectorAll('#projGrid .reveal').forEach(el=>io.observe(el));
+
+let expanded = false;
+document.getElementById('moreBtn').addEventListener('click', ()=>{
+  expanded = !expanded;
+  allCards.forEach((c,i)=>{
+    if(i>=INITIAL){
+      c.style.display = expanded ? '' : 'none';
+      if(expanded) io.observe(c);
+    }
+  });
+  document.getElementById('moreBtn').textContent = expanded ? 'Show Fewer Projects' : 'Show More Projects';
+});
+
+document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
